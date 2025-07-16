@@ -48,3 +48,7 @@ Join our community of developers creating universal apps.
 
 - [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
 - [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+
+## Assets
+
+[Flaticon](https://www.flaticon.es/icono-gratis/luna-menguante_686707?term=luna&page=1&position=85&origin=tag&related_id=686707)

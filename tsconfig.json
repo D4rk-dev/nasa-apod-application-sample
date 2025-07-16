@@ -5,8 +5,16 @@
     "paths": {
       "@/*": [
         "./*"
-      ]
-    }
+      ],
+      "@redux/*": [
+        "./lib/redux/*"
+      ],
+      "@components/*": [
+        "./lib/components/*"
+      ],
+    },
+    "module": "es2022",
+    "forceConsistentCasingInFileNames": true
   },
   "include": [
     "**/*.ts",
