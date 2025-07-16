@@ -13,15 +13,15 @@ export const saveFavorites = createAsyncThunk<void, FavoriteItem[]>(
 const favoritesSlice = createSlice({
   name: 'favorites',
   initialState: {
-    items: [] as FavoriteItem[],
+    items: [] as APODFull[],
     loading: true
   },
   reducers: {
-    addFavorite(state, action: PayloadAction<FavoriteItem>) {
+    addFavorite(state, action: PayloadAction<APODFull>) {
       state.items.push(action.payload);
     },
     removeFavorite(state, action: PayloadAction<string>) {
-      state.items = state.items.filter((item) => item.id !== action.payload);
+      state.items = state.items.filter(item => item.date !== action.payload);
     }
   },
   extraReducers: (builder) => {

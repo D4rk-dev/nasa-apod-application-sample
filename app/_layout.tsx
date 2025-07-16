@@ -10,7 +10,6 @@ export default function RootLayout() {
   const [loaded] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf')
   });
-
   useEffect(() => {
     if (loaded) {
       SplashScreen.hideAsync();
@@ -20,6 +19,26 @@ export default function RootLayout() {
     <Provider store={store}>
       <Stack>
         <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen
+          name="fullscreen/apod"
+          options={{
+            headerShown: false,
+            animation: 'slide_from_bottom',
+            animationDuration: 300,
+            presentation: 'modal'
+          }}
+          singular
+        />
+        <Stack.Screen
+          name="fullscreen/favorite/[date]"
+          options={{
+            headerShown: false,
+            animation: 'slide_from_bottom',
+            animationDuration: 300,
+            presentation: 'modal'
+          }}
+          singular
+        />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       </Stack>
     </Provider>

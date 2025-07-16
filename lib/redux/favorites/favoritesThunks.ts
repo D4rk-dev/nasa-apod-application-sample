@@ -3,7 +3,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 const FAVORITES_KEY = 'FAVORITES';
 
-export const loadFavorites = createAsyncThunk<FavoriteItem[]>(
+export const loadFavorites = createAsyncThunk<APODFull[]>(
   'favorites/load',
   async () => {
     const json = await AsyncStorage.getItem(FAVORITES_KEY);

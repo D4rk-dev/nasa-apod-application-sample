@@ -4,10 +4,8 @@ import { fetchAPOD } from './apodThunks';
 const apodSlice = createSlice({
   name: 'apod',
   initialState: {
-    data: null as APOD[] | null,
-    loading: false,
-    error: null as string | null,
-    current: null as APOD | null
+    data: [] as APOD[],
+    current: null as APODFull | null
   },
   reducers: {
     setCurrent(state, action) {
@@ -16,19 +14,43 @@ const apodSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchAPOD.pending, (state) => {
-        state.loading = true;
-        state.error = null;
+      .addCase(fetchAPOD.pending, (state, action) => {
+        const date = action.meta.arg || new Date().toISOString().split('T')[0];
+        const apods = new Map();
+        state.data.forEach((item) => {
+          apods.set(item.date, item);
+        });
+        if (!apods.has(date)) {
+          apods.set(date, {
+            date: date,
+            loading: true
+          });
+        }
+        state.data = Array.from(apods.values());
       })
       .addCase(fetchAPOD.fulfilled, (state, action) => {
-        state.loading = false;
-        state.data = state.data
-          ? [...state.data, action.payload]
-          : [action.payload];
+        const apods = new Map();
+        state.data.forEach((item) => {
+          apods.set(item.date, item);
+        });
+        apods.set(action.payload.date, action.payload);
+        state.data = Array.from(apods.values());
       })
       .addCase(fetchAPOD.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.error.message || 'Error al cargar APOD';
+        const apods = new Map();
+        const date = action.meta.arg || new Date().toISOString().split('T')[0];
+        state.data.forEach((item) => {
+          apods.set(item.date, item);
+        });
+        const item = {
+          ...apods.get(date),
+          loading: false,
+          error: action.error.message || 'Failed to fetch APOD'
+        };
+
+        apods.set(date, item);
+
+        state.data = Array.from(apods.values());
       });
   }
 });

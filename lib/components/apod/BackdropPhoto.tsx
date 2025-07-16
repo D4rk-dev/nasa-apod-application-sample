@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 import Animated, {
   interpolate,
   SharedValue,
-  useAnimatedStyle,
+  useAnimatedStyle
 } from 'react-native-reanimated';
 
 export const BackdropPhoto: FC<{
@@ -20,9 +20,12 @@ export const BackdropPhoto: FC<{
       )
     };
   });
+  if (apod.loading || apod.error) {
+    return <Animated.View style={[StyleSheet.absoluteFillObject, styles]} />;
+  }
   return (
     <Animated.Image
-      source={{ uri: apod.url }}
+      source={{ uri: apod.thumbnail_url || apod.url }}
       style={[StyleSheet.absoluteFillObject, styles]}
       blurRadius={50}
     />

@@ -1,14 +1,18 @@
 import { configureStore } from '@reduxjs/toolkit';
+import { apodListenerMiddleware } from './apod/apodListeners';
 import apodReducer from './apod/apodSlice';
+import { favoritesListenerMiddleware } from './favorites/favoritesListeners';
 import favoritesReducer from './favorites/favoritesSlice';
-import roverReducer from './rover/roverSlice';
-
 export const store = configureStore({
   reducer: {
     apod: apodReducer,
-    rovers: roverReducer,
     favorites: favoritesReducer
-  }
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(
+      apodListenerMiddleware.middleware,
+      favoritesListenerMiddleware.middleware
+    )
 });
 
 export type RootState = ReturnType<typeof store.getState>;

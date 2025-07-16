@@ -1,7 +1,7 @@
-import { IconSymbol } from '@/lib/components/IconSymbol';
+
+import Fontisto from '@expo/vector-icons/Fontisto';
 import { Tabs } from 'expo-router';
 import React from 'react';
-
 export default function TabLayout() {
   return (
     <Tabs screenOptions={{ headerShown: false }}>
@@ -10,7 +10,16 @@ export default function TabLayout() {
         options={{
           title: 'Home',
           tabBarIcon: ({ color }) => (
-            <IconSymbol size={28} name="house.fill" color={color} />
+           <Fontisto name="day-haze" size={24} color={color} />
+          )
+        }}
+      />
+      <Tabs.Screen
+        name="favorites"
+        options={{
+          title: 'Favorites',
+          tabBarIcon: ({ color }) => (
+            <Fontisto name="heart" size={20} color={color} />
           )
         }}
       />

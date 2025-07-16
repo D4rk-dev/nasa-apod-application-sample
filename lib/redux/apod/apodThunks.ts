@@ -2,6 +2,7 @@ import { NASA_API_KEY } from '@/lib/config';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { RootState } from '..';
 
+const pause = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 export const fetchAPOD = createAsyncThunk<APOD, string | undefined>(
   'apod/fetch',
   async (date, { signal }) => {
@@ -11,10 +12,13 @@ export const fetchAPOD = createAsyncThunk<APOD, string | undefined>(
     return json as APOD;
   },
   {
-    condition: (date, { getState }) => {
+    condition: (arg, { getState }) => {
+      const date = arg || new Date().toISOString().split('T')[0];
+
       const { apod } = getState() as RootState;
       let shouldFetch = true;
-      if (apod.data && apod.data.find((item) => item.date === date)) {
+
+      if (apod.data.find((item) => item.date === date)) {
         shouldFetch = false;
       }
       return shouldFetch;
