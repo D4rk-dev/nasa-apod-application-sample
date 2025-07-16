@@ -51,4 +51,5 @@ Join our community of developers creating universal apps.
 
 ## Assets
 
-[Flaticon](https://www.flaticon.es/icono-gratis/luna-menguante_686707?term=luna&page=1&position=85&origin=tag&related_id=686707)
+[Moon1](https://www.flaticon.es/icono-gratis/luna-menguante_686707?term=luna&page=1&position=85&origin=tag&related_id=686707)
+[Moon2](https://www.flaticon.es/icono-gratis/luna-creciente_581550?term=luna&page=1&position=1&origin=tag&related_id=581550)

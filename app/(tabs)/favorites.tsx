@@ -20,7 +20,7 @@ export default function Favorites() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#000',
+    backgroundColor: '#fff',
     padding: 16,
     paddingTop: 70,
     justifyContent: 'center',
